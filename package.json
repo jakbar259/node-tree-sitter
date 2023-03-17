@@ -1,5 +1,5 @@
 {
-  "name": "tree-sitter",
+  "name": "@curlconverter/tree-sitter",
   "version": "0.0.1",
   "description": "Incremental parsers for node",
   "author": "Max Brunsfeld",
