@@ -25,13 +25,6 @@
           'xcode_settings': {
             'MACOSX_DEPLOYMENT_TARGET': '10.9',
           },
-        }],
-        ['OS == "win"', {
-          "msbuild_settings": {
-            "ClCompile": {
-              "LanguageStandard": "stdcpp17"
-            }
-          }
         }]
       ],
       "cflags_cc": [
