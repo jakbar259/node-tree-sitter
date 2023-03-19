@@ -25,10 +25,23 @@
           'xcode_settings': {
             'MACOSX_DEPLOYMENT_TARGET': '10.9',
           },
+        }],
+        ['OS == "win"', {
+          "msvs_settings": {
+            "VCCLCompilerTool": {
+              "AdditionalOptions": ["/std:c++17"]
+            }
+          },
+          "msbuild_settings": {
+            "ClCompile": {
+              "LanguageStandard": "stdcpp17"
+            }
+          }
         }]
       ],
-      "cflags": [
+      "cflags_cc": [
         "-std=c++17",
+        "-stdlib=libc++",
       ],
       'xcode_settings': {
         'CLANG_CXX_LANGUAGE_STANDARD': 'c++17',
@@ -49,7 +62,10 @@
       ]
     }
   ],
-  'variables': { 'runtime%': 'node' },
+  'variables': {
+    'runtime%': 'node',
+    'openssl_fips': '',
+  },
   'conditions': [
       ['runtime=="electron"', { 'defines': ['NODE_RUNTIME_ELECTRON=1'] }],
   ]
