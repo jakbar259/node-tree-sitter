@@ -29,7 +29,11 @@
         ['OS == "win"', {
           "msvs_settings": {
             "VCCLCompilerTool": {
+              "RuntimeLibrary": 3,
               "AdditionalOptions": ["/std:c++17"]
+            },
+            "ClCompile": {
+              "LanguageStandard": "stdcpp17"
             }
           },
           "msbuild_settings": {
