@@ -1,7 +1,7 @@
 const Parser = require("..");
 const JavaScript = require('tree-sitter-javascript');
 const { assert } = require("chai");
-const { TextBuffer } = require("@curlconverter/superstring");
+const { TextBuffer } = require("superstring");
 
 describe("Node", () => {
   let parser;
