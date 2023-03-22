@@ -55,13 +55,13 @@ jobs:
   prebuild-test:
     strategy:
       matrix:
-        os:
-          - ubuntu-latest
-          - macos-latest
-          - windows-latest
+        os_and_node:
+          - { os: "ubuntu-latest", node: "18" }
+          - { os: "macos-latest", node: "18" }
+          - { os: "windows-2019", node: "14" }
       fail-fast: false
-    name: Prebuild on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
+    name: Prebuild on ${{ matrix.os_and_node.os }}
+    runs-on: ${{ matrix.os_and_node.os }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -69,19 +69,25 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.os_and_node.node }}
       - name: Update node-gyp
-        if: ${{ matrix.os == 'windows-latest' }}
-        shell: powershell
+        if: ${{ matrix.os_and_node.os == 'windows-2019' }}
         run: |
-          npm install --global node-gyp@latest
-          npm prefix -g | % {npm config set node_gyp "$_\node_modules\node-gyp\bin\node-gyp.js"}
+          $WhereNode = Get-Command node | Select-Object -ExpandProperty Definition
+          $NodeDirPath = Split-Path $WhereNode -Parent
+          $NodeModulesPath = $NodeDirPath + "\node_modules\npm\node_modules\npm-lifecycle"
+          cd $NodeModulesPath
+          npm install node-gyp@latest
+          npm config set msvs_version 2017
+          npm config set msvs-version 2017
+          npm config set msvs_version 2017 --global
+          npm config set msvs-version 2017 --global
       - run: npm install --ignore-scripts
       - run: npx --no-install prebuild -r node -t 10.0.0 -t 12.0.0 -t 14.0.0 -t 16.0.0 -t 18.0.0
       - run: npx --no-install prebuild -r electron -t 21.0.0 -t 22.0.0 -t 23.0.0
-      - if: matrix.os == 'windows-latest'
+      - if: matrix.os_and_node.os == 'windows-2019'
         run: npx --no-install prebuild -r electron -t 21.0.0 -t 22.0.0 -t 23.0.0 --arch ia32
-      - if: matrix.os == 'macos-latest'
+      - if: matrix.os_and_node.os == 'macos-latest'
         run: npx --no-install prebuild -r electron -t 21.0.0 -t 22.0.0 -t 23.0.0 --arch arm64
 
   publish:
