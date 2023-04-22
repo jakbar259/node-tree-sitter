@@ -1,7 +1,7 @@
 {
   "name": "@curlconverter/tree-sitter",
-  "version": "0.0.8",
-  "description": "fork of incremental parsers for node with Node 19 support",
+  "version": "0.0.9",
+  "description": "fork of incremental parsers for node with Node 19+ support",
   "author": "Max Brunsfeld",
   "license": "MIT",
   "repository": {
@@ -19,7 +19,7 @@
     "prebuild-install": "^7.1.1"
   },
   "devDependencies": {
-    "@types/node": "^18.14.6",
+    "@types/node": "^18.15.13",
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
     "node-gyp": "^9.3.1",
