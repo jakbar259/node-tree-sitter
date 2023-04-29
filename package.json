@@ -1,6 +1,6 @@
 {
   "name": "@curlconverter/tree-sitter",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "fork of incremental parsers for node with Node 19+ support",
   "author": "Max Brunsfeld",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "mocha": "^10.2.0",
     "node-gyp": "^9.3.1",
     "prebuild": "^11.0.4",
-    "@curlconverter/superstring": "^0.0.2",
+    "@curlconverter/superstring": "^0.0.3",
     "tree-sitter-javascript": "https://github.com/tree-sitter/tree-sitter-javascript.git#master"
   },
   "overrides": {
